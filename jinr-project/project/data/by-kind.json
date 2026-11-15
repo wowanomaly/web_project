@@ -1,0 +1,1 @@
+[{"attack_kind": "bingbot_flood", "count": 466617}, {"attack_kind": "curl_hammer", "count": 340241}, {"attack_kind": "event_fuzz", "count": 226558}, {"attack_kind": "event_fuzz_blocked", "count": 5837302}, {"attack_kind": "yisouspider", "count": 1305323}]

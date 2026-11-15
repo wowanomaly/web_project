@@ -1,0 +1,31 @@
+services:
+  db:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_USER: jinr
+      POSTGRES_PASSWORD: jinr
+      POSTGRES_DB: jinr
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U jinr"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+
+  api:
+    build: .
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      DATABASE_URL: postgresql+psycopg2://jinr:jinr@db:5432/jinr
+      LOG_URL: http://158.160.148.0:9000/jcount.log.gz
+      CURL_HAMMER_IP: 159.93.25.196
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./data:/app/data   # put GeoLite2-City.mmdb here
+
+volumes:
+  pgdata:

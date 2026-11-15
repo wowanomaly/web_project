@@ -1,0 +1,1 @@
+  0  9   *   *   *    sudo sh -c "docker exec project-api-1 sh -c 'cd /app && python -m app.snapshot' >> /var/log/snapshot.log 2>&1"
